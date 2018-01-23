@@ -10,9 +10,4 @@ class OnlineOrderControllerSpec extends Specification implements ControllerUnitT
 
     def cleanup() {
     }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }

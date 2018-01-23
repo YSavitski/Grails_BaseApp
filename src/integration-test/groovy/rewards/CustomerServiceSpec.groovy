@@ -12,7 +12,7 @@ class CustomerServiceSpec extends Specification {
     CustomerService customerService
     SessionFactory sessionFactory
 
-    private Long setupData() {
+    /*private Long setupData() {
         // TODO: Populate valid domain instances and return a valid ID
         //new Customer(...).save(flush: true, failOnError: true)
         //new Customer(...).save(flush: true, failOnError: true)
@@ -70,5 +70,5 @@ class CustomerServiceSpec extends Specification {
 
         then:
         customer.id != null
-    }
+    }*/
 }

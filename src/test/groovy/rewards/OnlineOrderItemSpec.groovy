@@ -10,9 +10,4 @@ class OnlineOrderItemSpec extends Specification implements DomainUnitTest<OrderI
 
     def cleanup() {
     }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }

@@ -10,9 +10,4 @@ class ProductControllerSpec extends Specification implements ControllerUnitTest<
 
     def cleanup() {
     }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }

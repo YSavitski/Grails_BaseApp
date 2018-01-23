@@ -10,9 +10,4 @@ class AwardSpec extends Specification implements DomainUnitTest<Award> {
 
     def cleanup() {
     }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }

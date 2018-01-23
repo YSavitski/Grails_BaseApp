@@ -10,9 +10,4 @@ class AwardControllerSpec extends Specification implements ControllerUnitTest<Aw
 
     def cleanup() {
     }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }
