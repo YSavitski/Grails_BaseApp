@@ -10,9 +10,4 @@ class BusinessSpec extends Specification implements DomainUnitTest<Business> {
 
     def cleanup() {
     }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }
