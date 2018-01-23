@@ -3,7 +3,7 @@ package rewards
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class OrderSpec extends Specification implements DomainUnitTest<Order> {
+class OnlineOrderItemSpec extends Specification implements DomainUnitTest<OrderItem> {
 
     def setup() {
     }
