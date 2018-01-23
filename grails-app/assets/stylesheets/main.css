@@ -42,7 +42,7 @@ body {
 }
 
 #grailsLogo {
-    background-color: #feb672;
+    background-color: #754719;
 }
 
 a:hover, a:active {
@@ -94,7 +94,7 @@ img {
 }
 
 .footer a {
-    color: #feb672;
+    color: #754719;
 }
 
 .spinner {
@@ -258,7 +258,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .required-indicator {
-    color: #cc0000;
+    color: #522900;
     display: inline-block;
     font-weight: bold;
     margin-left: 0.3em;
@@ -446,7 +446,7 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-    background: #feb672;
+    background: #E0D6CC;
 }
 
 /* PAGINATION */
