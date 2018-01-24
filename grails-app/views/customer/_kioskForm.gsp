@@ -6,11 +6,10 @@
     </div>
     <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
-            <h4>Welcome back, Mike!</h4>
-            <p><h5>You have 3 points.</h5></p>
+            <h4>${welcomeMessage}</h4>
         </div>
         <div class="col-sm-6">
-            <g:textField name="phone" class="form-control" placeholder="Enter your cell number to check in"/>
+            <g:textField name="phone" class="form-control" placeholder="Enter your cell number to check in" value="${customerInstance?.phone}"/>
             <div class="row"><br/></div>
             <div class="row">
                 <div class="col-sm-4">
@@ -50,13 +49,13 @@
             <div class="row"><br/></div>
             <div class="row">
                 <div class="col-sm-4">
-                    <input class="btn btn-danger btn-lg btn-block" type="button" name="pad" value="Del"/>
+                    <input class="btn btn-danger btn-lg btn-block" type="button" name="pad" value="Del" onclick="clearPad()"/>
                 </div>
                 <div class="col-sm-4">
                     <input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="0" onclick="padKey(this.value)"/>
                 </div>
                 <div class="col-sm-4">
-                    <input class="btn btn-success btn-lg btn-block" type="button" name="pad" value="Go"/>
+                    <g:submitButton class="btn btn-success btn-lg btn-block" name="pad" value="Go"/>
                 </div>
             </div>
         </div>
@@ -65,5 +64,8 @@
 <script type="text/javascript">
     function padKey(num) {
         document.getElementById("phone").value += num;
+    }
+    function clearPad() {
+        document.getElementById("phone").value = "";
     }
 </script>
