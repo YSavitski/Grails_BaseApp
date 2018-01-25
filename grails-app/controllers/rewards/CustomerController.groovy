@@ -29,4 +29,14 @@ class CustomerController {
 
         render(view: "checkin", model: [customerInstance: customerInstance, welcomeMessage: welcomeMessage])
     }
+
+    def profile() {
+        def customerInstanse = Customer.findByPhone(params.id)
+        [customerInstance: customerInstanse]
+    }
+
+    def updateProfile(Customer customerInstance) {
+        customerInstance.save()
+        render(view: "profile", model: [customerInstance: customerInstance])
+    }
 }
