@@ -1,5 +1,6 @@
 package rewards
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 
 import static org.springframework.http.HttpStatus.CREATED
@@ -12,18 +13,22 @@ class ClientController {
 
     UploadClientsService uploadClientsService
 
+    @Secured(['ROLE_USER','ROLE_ADMIN'])
     def index() {
         [clients: Client.list()]
     }
 
+    @Secured('ROLE_ADMIN')
     def create() {
         [clientInstance: new Client()]
     }
 
+    @Secured('ROLE_ADMIN')
     def upload() {
         render uploadClientsService.upload(request)
     }
 
+    @Secured('ROLE_ADMIN')
     def save(Client client) {
         if (client == null) {
             notFound()

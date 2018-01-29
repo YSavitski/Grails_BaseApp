@@ -1,6 +1,12 @@
 package rewards
 
+import authority.Role
+import authority.User
+import authority.UserRole
+import grails.plugin.springsecurity.SpringSecurityService
+
 class BootStrap {
+    def SpringSecurityService springSecurityService
 
     def init = { servletContext ->
         new Product(name: "Morning Blend", sku: "MB01", price: 14.95).save()
@@ -24,6 +30,19 @@ class BootStrap {
 
         new Client(name: "ManUtd", email: "accessibility@manutd.co.uk", street: "Sir Matt Busby Way, Stretford, Manchester", zip: "M16 0RA", latitude: 53.462949, longitude: -2.288996).save()
         new Client(name: "Old Trafford Cricket Ground", email: "test@gmail.com", street: "Talbot Rd, Stretford, Manchester", zip: "M16 0PX", latitude: 53.456435, longitude: -2.286808).save()
+
+        def adminRole = new Role('ROLE_ADMIN').save()
+        def userRole = new Role('ROLE_USER').save()
+
+        def me = new User('admin', 'admin').save()
+        def user = new User('user', 'user').save()
+
+        UserRole.create(me, adminRole)
+        UserRole.create(user, userRole)
+        UserRole.withSession {
+            it.flush()
+            it.clear()
+        }
     }
     def destroy = {
     }
