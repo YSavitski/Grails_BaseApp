@@ -1,17 +1,15 @@
 package rewards
 
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import grails.gorm.transactions.Transactional
-import org.springframework.web.util.UriUtils
 
 import java.nio.charset.StandardCharsets
 
 @Transactional
 class CoordinatesService {
-    def getByAddress(String street, String zip) {
-        String searchAddress = String.join(", ", street, zip)
+    def getByAddress(Client client) {
+        String searchAddress = String.join(", ", client.street, client.zip)
         URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" +
                 URLEncoder.encode(searchAddress, StandardCharsets.UTF_8.toString()) +
                 "&key=AIzaSyBuVjBBrBoqib2cWPNg-LFuZadj2Fpe_0g")
@@ -32,26 +30,26 @@ class CoordinatesService {
                 full += output
             }
 
+            JsonObject location = parseLocation(full)
+            client.latitude = location.get("lat").asDouble
+            client.longitude = location.get("lng").asDouble
+
             conn.disconnect()
+            return client
         }
         catch (MalformedURLException e) {
             e.printStackTrace()
         } catch (IOException e) {
             e.printStackTrace()
-        } finally {
-
         }
     }
 
-    def parseLatLng(String json) {
+    def parseLocation(String json) {
         JsonParser parser = new JsonParser()
         JsonObject location =  parser.parse(json).getAsJsonObject()
                 .getAsJsonArray("results").get(0).getAsJsonObject()
                 .getAsJsonObject("geometry")
                 .getAsJsonObject("location")
-
-        Double latitude = location.get("lat").asDouble
-        Double longitude = location.get("lng").asDouble
-        return [latitude, longitude]
+        return location
     }
 }

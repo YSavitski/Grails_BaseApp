@@ -30,16 +30,52 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form resource="${clientInstance}" method="POST">
 
-    %{--<fieldset class="form">
+    <g:form url="[resource: clientInstance, action: 'save']" method="POST">
+        <fieldset class="buttons">
+            <g:actionSubmit class="save" action="save" value="${message(code: 'default.button.create.label', default: 'Save')}"/>
+        </fieldset>
+        <fieldset class="form">
+            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'name', 'error')}">
+                <label for="name">
+                    <g:message code="client.name.label" default="Name"/>
+                </label>
+                <g:textField name="name" value="${clientInstance?.name}"/>
+            </div>
+
+            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'email', 'error')}">
+                <label for="email">
+                    <g:message code="client.email.label" default="Email"/>
+                </label>
+                <g:textField name="email" value="${clientInstance?.email}"/>
+            </div>
+
+            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'street', 'error')}">
+                <label for="street">
+                    <g:message code="client.street.label" default="Street"/>
+                </label>
+                <g:textField name="street" value="${clientInstance?.street}"/>
+            </div>
+
+            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'zip', 'error')}">
+                <label for="zip">
+                    <g:message code="client.zip.label" default="Zip"/>
+                </label>
+                <g:textField name="zip" value="${clientInstance?.zip}"/>
+            </div>
+        </fieldset>
+
+    </g:form>
+    %{--<g:form resource="${clientInstance}" method="POST">
+
+    --}%%{--<fieldset class="form">
         <f:all bean="${propertyName}"/>
-    </fieldset>--}%
+    </fieldset>--}%%{--
         <fieldset class="buttons">
             <g:submitButton name="save" class="save"
                             value="${message(code: 'default.button.create.label', default: 'Save')}"/>
         </fieldset>
-    </g:form>
+    </g:form>--}%
 </div>
 </body>
 </html>

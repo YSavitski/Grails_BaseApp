@@ -6,6 +6,7 @@
     <g:set var="entityName" value="${message(code: 'client.label', default: 'Client')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css"/>
     <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}" type="text/javascript"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-3.3.1.min.js')}"></script>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
     <style>
     #map {
@@ -32,6 +33,15 @@
         <li>
             <g:link class="create" action="create">
                 <g:message code="default.new.label" args="[entityName]"/>
+            </g:link>
+        </li>
+        <li>
+            <g:link class="create">
+                <g:message message="Upload clients"/>
+                <form enctype="multipart/form-data" name="uploadForm" id="uploadForm" method="post">
+                    <input accept=".csv" class="upload" id="file" name="file" type="file">
+                    <input type="submit" class="btn btn-primary" value="Upload">
+                </form>
             </g:link>
         </li>
     </ul>
@@ -77,6 +87,28 @@
 <h3>Google Maps Demo</h3>
 
 <div id="map" class="container"></div>
+
+<script>
+    $('#uploadForm').submit(function (e) {
+        e.preventDefault();
+        var file = $('#file').val();
+        var jForm = new FormData();
+        jForm.append("file", $('#file').get(0).files[0]);
+        $.ajax({
+            url: "upload",
+            type: "POST",
+            data: jForm,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert(data);
+                window.location='index'
+            }
+        })
+    })
+</script>
+
 
 <script>
     function initMap() {

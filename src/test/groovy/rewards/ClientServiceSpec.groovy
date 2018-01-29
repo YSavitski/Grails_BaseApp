@@ -3,7 +3,7 @@ package rewards
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class CoordinatesServiceSpec extends Specification implements ServiceUnitTest<CoordinatesService>{
+class ClientServiceSpec extends Specification implements ServiceUnitTest<ClientService>{
 
     def setup() {
     }
