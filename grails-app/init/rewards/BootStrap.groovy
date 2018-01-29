@@ -21,6 +21,9 @@ class BootStrap {
         new Customer(phone: 4085551212, firstName: "Ida", lastName: "Goodson", email: "IGoodson@gmail.com", totalPoints: 4).save()
         new Customer(phone: 8015551234, firstName: "Bumble Bee", lastName: "Smith", email: "BBSmith@gmail.com", totalPoints: 5).save()
         new Customer(phone: 4315551212, firstName: "Sippie", lastName: "Wallace", email: "SWallase@gmail.com", totalPoints: 4).save()
+
+        new Client(name: "ManUtd", email: "accessibility@manutd.co.uk", street: "Sir Matt Busby Way, Stretford, Manchester", zip: "M16 0RA", latitude: 53.462949, longitude: -2.288996).save()
+        new Client(name: "Old Trafford Cricket Ground", email: "test@gmail.com", street: "Talbot Rd, Stretford, Manchester", zip: "M16 0PX", latitude: 53.456435, longitude: -2.286808).save()
     }
     def destroy = {
     }
