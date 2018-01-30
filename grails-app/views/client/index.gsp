@@ -1,5 +1,3 @@
-<%@ page import="rewards.Customer" %>
-
 <!doctype html>
 <html>
 <head>
