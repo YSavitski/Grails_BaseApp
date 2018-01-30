@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<a href="#create-${clientInstance}" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
+<a href="#create-${client}" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
                                                                         default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
@@ -17,65 +17,54 @@
     </ul>
 </div>
 
-<div id="create-${clientInstance}" class="content scaffold-create" role="main">
+<div id="create-${client}" class="content scaffold-create" role="main">
     <h1><g:message code="default.create.label" args="[entityName]"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <g:hasErrors bean="${clientInstance}">
+    <g:hasErrors bean="${client}">
         <ul class="errors" role="alert">
-            <g:eachError bean="${clientInstance}" var="error">
+            <g:eachError bean="${client}" var="error">
                 <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
                         error="${error}"/></li>
             </g:eachError>
         </ul>
     </g:hasErrors>
 
-    <g:form url="[resource: clientInstance, action: 'save']" method="POST">
+    <g:form url="[resource: client, action: 'save']" method="POST">
         <fieldset class="buttons">
             <g:actionSubmit class="save" action="save" value="${message(code: 'default.button.create.label', default: 'Save')}"/>
         </fieldset>
         <fieldset class="form">
-            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'name', 'error')}">
+            <div class="fieldcontain ${hasErrors(bean: client, field: 'name', 'error')}">
                 <label for="name">
                     <g:message code="client.name.label" default="Name"/>
                 </label>
-                <g:textField name="name" value="${clientInstance?.name}"/>
+                <g:textField name="name" value="${client?.name}"/>
             </div>
 
-            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'email', 'error')}">
+            <div class="fieldcontain ${hasErrors(bean: client, field: 'email', 'error')}">
                 <label for="email">
                     <g:message code="client.email.label" default="Email"/>
                 </label>
-                <g:textField name="email" value="${clientInstance?.email}"/>
+                <g:textField name="email" value="${client?.email}"/>
             </div>
 
-            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'street', 'error')}">
+            <div class="fieldcontain ${hasErrors(bean: client, field: 'street', 'error')}">
                 <label for="street">
                     <g:message code="client.street.label" default="Street"/>
                 </label>
-                <g:textField name="street" value="${clientInstance?.street}"/>
+                <g:textField name="street" value="${client?.street}"/>
             </div>
 
-            <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'zip', 'error')}">
+            <div class="fieldcontain ${hasErrors(bean: client, field: 'zip', 'error')}">
                 <label for="zip">
                     <g:message code="client.zip.label" default="Zip"/>
                 </label>
-                <g:textField name="zip" value="${clientInstance?.zip}"/>
+                <g:textField name="zip" value="${client?.zip}"/>
             </div>
         </fieldset>
-
     </g:form>
-    %{--<g:form resource="${clientInstance}" method="POST">
-
-    --}%%{--<fieldset class="form">
-        <f:all bean="${propertyName}"/>
-    </fieldset>--}%%{--
-        <fieldset class="buttons">
-            <g:submitButton name="save" class="save"
-                            value="${message(code: 'default.button.create.label', default: 'Save')}"/>
-        </fieldset>
-    </g:form>--}%
 </div>
 </body>
 </html>

@@ -1,21 +1,15 @@
 <%@ page import="rewards.Customer" %>
+
 <!doctype html>
 <html>
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'client.label', default: 'Client')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'maps-style.css')}" type="text/css"/>
     <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}" type="text/javascript"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-3.3.1.min.js')}"></script>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
-    <style>
-    #map {
-        position: center;
-        width: 90%;
-        height: 50%;
-        background-color: grey;
-    }
-    </style>
 </head>
 
 <body>
@@ -26,24 +20,31 @@
 <div class="nav" role="navigation">
     <ul>
         <li>
+            <g:form controller="logout">
+                <g:submitButton class="btn btn-danger btn-sm" name="logout" value="Logout"/>
+            </g:form>
+        </li>
+        <li>
             <a class="home" href="${createLink(uri: '/')}">
                 <g:message code="default.home.label"/>
             </a>
         </li>
-        <li>
-            <g:link class="create" action="create">
-                <g:message code="default.new.label" args="[entityName]"/>
-            </g:link>
-        </li>
-        <li>
-            <g:link class="create">
-                <g:message message="Upload clients"/>
-                <form enctype="multipart/form-data" name="uploadForm" id="uploadForm" method="post">
-                    <input accept=".csv" class="upload" id="file" name="file" type="file">
-                    <input type="submit" class="btn btn-primary" value="Upload">
-                </form>
-            </g:link>
-        </li>
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
+            <li>
+                <g:link class="create" action="create">
+                    <g:message code="default.new.label" args="[entityName]"/>
+                </g:link>
+            </li>
+            <li>
+                <g:link class="create">
+                    <g:message message="Upload clients"/>
+                    <form enctype="multipart/form-data" name="uploadForm" id="uploadForm" method="post">
+                        <input accept=".csv" class="upload" id="file" name="file" type="file">
+                        <input type="submit" class="btn btn-primary" value="Upload">
+                    </form>
+                </g:link>
+            </li>
+        </sec:ifAnyGranted>
     </ul>
 </div>
 

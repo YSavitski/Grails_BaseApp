@@ -13,22 +13,26 @@ class ClientController {
 
     UploadClientsService uploadClientsService
 
-    @Secured(['ROLE_USER','ROLE_ADMIN'])
     def index() {
         [clients: Client.list()]
     }
 
-    @Secured('ROLE_ADMIN')
-    def create() {
-        [clientInstance: new Client()]
+    def show(Long id) {
+        [client: clientService.get(id)]
     }
 
-    @Secured('ROLE_ADMIN')
+    def create() {
+        [client: new Client()]
+    }
+
+    def edit(Long id) {
+        [client: clientService.get(id)]
+    }
+
     def upload() {
         render uploadClientsService.upload(request)
     }
 
-    @Secured('ROLE_ADMIN')
     def save(Client client) {
         if (client == null) {
             notFound()
