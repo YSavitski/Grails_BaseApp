@@ -101,7 +101,7 @@
         var jForm = new FormData();
         jForm.append("file", $('#file').get(0).files[0]);
         $.ajax({
-            url: "upload",
+            url: "client/upload",
             type: "POST",
             data: jForm,
             mimeType: "multipart/form-data",
@@ -109,7 +109,7 @@
             processData: false,
             success: function (data) {
                 alert(data);
-                window.location='index'
+                window.location='client/index'
             }
         })
     })
