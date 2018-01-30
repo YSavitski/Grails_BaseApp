@@ -1,7 +1,7 @@
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'authority.User'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'authority.UserDetails'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'authority.UserRole'
 grails.plugin.springsecurity.authority.className = 'authority.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
@@ -20,10 +20,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
 	[pattern: '/client/create', access: ['ROLE_ADMIN']],
 	[pattern: '/client/save', access: ['ROLE_ADMIN']],
-	[pattern: '/client/upload', access: ['ROLE_ADMIN']],
 	[pattern: '/client/edit/**', access: ['ROLE_ADMIN']],
 	[pattern: '/client/update/**', access: ['ROLE_ADMIN']],
-	[pattern: '/client/delete/**', access: ['ROLE_ADMIN']]
+	[pattern: '/client/delete/**', access: ['ROLE_ADMIN']],
+	[pattern: '/client/upload', access: ['ROLE_ADMIN']],
+	[pattern: '/user/**', access: ['ROLE_ADMIN']]
+
 
 ]
 
@@ -35,4 +37,3 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/favicon.ico', filters: 'none'],
 	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
-

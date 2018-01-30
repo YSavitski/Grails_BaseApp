@@ -44,6 +44,11 @@
                     </form>
                 </g:link>
             </li>
+            <li>
+                <g:link class="create" controller="user" action="create">
+                    <g:message code="default.add.label" args="['new User']"/>
+                </g:link>
+            </li>
         </sec:ifAnyGranted>
     </ul>
 </div>
