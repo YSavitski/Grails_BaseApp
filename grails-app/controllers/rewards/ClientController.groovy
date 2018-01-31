@@ -41,6 +41,11 @@ class ClientController {
             return
         }
 
+        if (client.hasErrors()) {
+            respond client.errors, view:'create'
+            return
+        }
+
         try {
             clientService.save(client)
         } catch (ValidationException e) {

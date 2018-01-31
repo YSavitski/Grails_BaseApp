@@ -26,15 +26,20 @@ class UserController {
     }
 
     def save(User user) {
-        if (user == null && user.role == null) {
+        if (user == null) {
             notFound()
+            return
+        }
+
+        if (user.hasErrors()) {
+            respond user.errors, view:'create'
             return
         }
 
         try {
             userService.createNewUser(user)
         } catch (ValidationException e) {
-            respond client.errors, view:'create'
+            respond user.errors, view:'create'
             return
         }
 
