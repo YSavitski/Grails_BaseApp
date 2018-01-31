@@ -1,6 +1,6 @@
 # Grails_BaseApp
 
-Application uses imbadable database.
+Application uses embeddable database. Use JDBC url 'jdbc:h2:mem:devDb'
 
 Created by default:
   -2 users (user:user, admin:admin)
