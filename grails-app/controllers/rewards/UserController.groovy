@@ -12,16 +12,17 @@ import static org.springframework.http.HttpStatus.NOT_FOUND
 class UserController {
     UserService userService
 
+    ClientController clientController = new ClientController()
+    List<String> roles = Role.list()
+            .stream()
+            .map({auth -> auth.authority})
+            .collect()
+
     def index() {
         clientController.index()
     }
 
     def create() {
-        List<String> roles = Role.list()
-                .stream()
-                .map({auth -> auth.authority})
-                .collect()
-
         [user: new User(), roles: roles]
     }
 
@@ -32,7 +33,7 @@ class UserController {
         }
 
         if (user.hasErrors()) {
-            respond user.errors, view:'create'
+            respond user.errors, view:'create', model: [roles: roles]
             return
         }
 
