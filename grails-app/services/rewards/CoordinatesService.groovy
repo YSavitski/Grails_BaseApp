@@ -2,11 +2,9 @@ package rewards
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import grails.gorm.transactions.Transactional
 
 import java.nio.charset.StandardCharsets
 
-@Transactional
 class CoordinatesService {
     def getByAddress(Client client) {
         String searchAddress = String.join(", ", client.street, client.zip)
@@ -45,11 +43,6 @@ class CoordinatesService {
     }
 
     def parseLocation(String json) {
-        JsonParser parser = new JsonParser()
-        JsonObject location =  parser.parse(json).getAsJsonObject()
-                .getAsJsonArray("results").get(0).getAsJsonObject()
-                .getAsJsonObject("geometry")
-                .getAsJsonObject("location")
-        return location
+        return new JsonParser().parse(json).results[0].geometry.location
     }
 }
